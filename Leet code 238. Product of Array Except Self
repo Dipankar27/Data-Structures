@@ -1,0 +1,41 @@
+#One way of doing (but not as per the asked question)
+
+class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        t=1
+        output=[]
+        for i in range (len(nums)):
+        #find total product of the array
+            t=t*nums[i]
+        
+        for i in range (len(nums)):
+            output.append(t//nums[i]) #Divide the total by each element in the array and add in output array
+            
+        return output
+        
+ # ************Efficient solution***************************
+ 
+ class Solution(object):
+    def productExceptSelf(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        output=[1]*len(nums) # create an array of 1 of size nums
+        prod=1 
+        for i in range (len(nums)): # from right to left 
+            output[i] *= prod    # multiply output with product
+            prod *=nums[i]
+        
+        prod=1
+        for i in range(len(nums)-1,-1,-1): From left to right
+            output[i] *= prod
+            prod *=nums[i]
+            
+        return output
+            
+        
